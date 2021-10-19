@@ -32,3 +32,6 @@ The robot does not start after pressing the Start Button for 1 minute.
 The robot is touched by a human without the consent of the referee.
 The robot moves out of the arena.
 The referee orders to restart.
+## Reference
+https://www.abiraworld.com/fastest-line-follower.php
+https://www.technoxian.com/fastest-line-follower/#1592308994466-10f02597-5a07
