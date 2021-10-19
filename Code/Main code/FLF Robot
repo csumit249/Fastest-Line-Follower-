@@ -1,0 +1,192 @@
+*/-----------------------------------------------------------------------------------------------------------------------------------------------
+Author : Sumit chatterjee
+contact : csumit249@gmail.com
+------------------------------------------------------------------------------------------------------------------------------------------------*/
+#define pin_a0 (A0)
+#define pin_a1 (A1)
+#define pin_a2 (A2)
+#define pin_a3 (A3)
+#define pin_a4 (A4)
+
+static const uint8_t a0 = pin_a0;
+static const uint8_t a1 = pin_a1;
+static const uint8_t a2 = pin_a2;
+static const uint8_t a3 = pin_a3;
+static const uint8_t a4 = pin_a4;
+uint8_t data[4];
+uint8_t Senta;
+int in1 = 11;  //Motor A 
+int in2 = 12;   //Motor A 
+int in3 = 9;  // Motor B
+int in4 = 8;    //Motor B 
+int enA = 6; // pwm Motor A 
+int enB = 5;  // pwm Motor B
+uint8_t thres = 50;
+void setup() {
+  pinMode(in1,OUTPUT);
+pinMode(in2,OUTPUT);
+pinMode(in3,OUTPUT);
+pinMode(in4,OUTPUT);
+pinMode(in4,OUTPUT);
+pinMode(enA,OUTPUT);
+pinMode(enB,OUTPUT);
+  // put your setup code here, to run once:
+bool sensor_func_1();
+bool sensor_func_2();
+bool sensor_func_3();
+bool sensor_func_4();
+bool sensor_func_5();
+Serial.begin(9600);
+}
+
+void loop() {
+  bool f[]={sensor_func_1(),sensor_func_2(),sensor_func_3(),sensor_func_4(),sensor_func_5()};
+  for(int i = 0; i<5; i++){
+     data[i] = f[i];
+     Serial.println(data[i]);
+     bitWrite(Senta,i,data[i]);
+  }
+  //Serial.println(Senta);
+  switch(Senta){
+    case(27):
+ analogWrite(enA, 255);
+ analogWrite(enB, 255);
+digitalWrite(in1,1);
+digitalWrite(in2,0);
+digitalWrite(in3,1);
+digitalWrite(in4,0);
+break;
+ case(3):
+ analogWrite(enA, 255);
+analogWrite(enB, 255);
+digitalWrite(in1,1); // Motor right
+digitalWrite(in2,0); // Motor right
+digitalWrite(in3,0); // Motor left
+digitalWrite(in4,0); // motor left
+
+break;
+case(24):
+analogWrite(enA, 255);
+analogWrite(enB, 255);
+digitalWrite(in1,0);
+digitalWrite(in2,0);
+digitalWrite(in3,1);
+digitalWrite(in4,0);
+break;
+case(29):
+analogWrite(enA, 150);
+analogWrite(enB, 150);
+digitalWrite(in1,0);
+digitalWrite(in2,0);
+digitalWrite(in3,1);
+digitalWrite(in4,0);
+break;
+case(25):
+analogWrite(enA, 100);
+analogWrite(enB, 100);
+digitalWrite(in1,0);
+digitalWrite(in2,0);
+digitalWrite(in3,1);
+digitalWrite(in4,0);
+break;
+case(19):
+analogWrite(enA, 100);
+analogWrite(enB, 100);
+digitalWrite(in1,1); // Motor right
+digitalWrite(in2,0); // Motor right
+digitalWrite(in3,0); // Motor left
+digitalWrite(in4,0); // motor left
+break;
+case(23):
+analogWrite(enA, 150);
+analogWrite(enB, 150);
+digitalWrite(in1,1); // Motor right
+digitalWrite(in2,0); // Motor right
+digitalWrite(in3,0); // Motor left
+digitalWrite(in4,0); // motor left
+break;
+case(7):
+analogWrite(enA, 150);
+analogWrite(enB, 150);
+digitalWrite(in1,1); // Motor right
+digitalWrite(in2,0); // Motor right
+digitalWrite(in3,0); // Motor left
+digitalWrite(in4,0); // motor left
+break;
+case(15):
+analogWrite(enA, 150);
+analogWrite(enB, 150);
+digitalWrite(in1,1); // Motor right
+digitalWrite(in2,0); // Motor right
+digitalWrite(in3,0); // Motor left
+digitalWrite(in4,0); // motor left
+break;
+case(28):
+analogWrite(enA, 150);
+analogWrite(enB, 150);
+digitalWrite(in1,0); // Motor right
+digitalWrite(in2,0); // Motor right
+digitalWrite(in3,1); // Motor left
+digitalWrite(in4,0); // motor left
+break;
+case(30):
+analogWrite(enA, 150);
+analogWrite(enB, 150);
+digitalWrite(in1,0); // Motor right
+digitalWrite(in2,0); // Motor right
+digitalWrite(in3,1); // Motor left
+digitalWrite(in4,0); // motor left
+break;
+case(31):
+analogWrite(enA, 100);
+analogWrite(enB, 100);
+digitalWrite(in1,1); // Motor right
+digitalWrite(in2,0); // Motor right
+digitalWrite(in3,1); // Motor left
+digitalWrite(in4,0); // motor left
+break;
+default:
+analogWrite(enA, 255);
+analogWrite(enB, 255);
+digitalWrite(in1,0);
+digitalWrite(in2,0);
+digitalWrite(in3,0);
+digitalWrite(in4,0);
+break;
+  }
+
+}
+bool sensor_func_1(){
+  uint8_t Sn1 = analogRead(a0);
+  if(Sn1 < thres){
+    return true;
+  }return false;
+}
+
+bool sensor_func_2(){
+  uint8_t Sn2 = analogRead(a1);
+  if(Sn2 < thres){
+    return true;
+  }return false;
+}
+
+bool sensor_func_3(){
+  uint8_t Sn3 = analogRead(a2);
+  if(Sn3 <thres){
+    return true;
+  }return false;
+}
+
+bool sensor_func_4(){
+  uint8_t Sn4 = analogRead(a3);
+  if(Sn4 < thres){
+    return true;
+  }return false;
+}
+
+bool sensor_func_5(){
+  uint8_t Sn5 = analogRead(a4);
+  if(Sn5 < thres){
+    return true;
+  }return false;
+}
