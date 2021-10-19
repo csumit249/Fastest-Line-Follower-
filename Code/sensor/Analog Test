@@ -1,0 +1,42 @@
+*/-----------------------------------------------------------------------------------------------------------------------------------------------
+Author : Sumit chatterjee
+contact : csumit249@gmail.com
+------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+#define pin_a0 (A0)
+#define pin_a1 (A1)
+#define pin_a2 (A2)
+#define pin_a3 (A3)
+#define pin_a4 (A4)
+
+static const uint8_t a0 = pin_a0;
+static const uint8_t a1 = pin_a1;
+static const uint8_t a2 = pin_a2;
+static const uint8_t a3 = pin_a3;
+static const uint8_t a4 = pin_a4;
+
+void setup() {
+  // put your setup code here, to run once:
+Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  int Sn1 = analogRead(a0);
+  int Sn2 = analogRead(a1);
+  int Sn3 = analogRead(a2);
+  int Sn4 = analogRead(a3);
+  int Sn5 = analogRead(a4);
+  Serial.println(Sn1);
+   Serial.println(Sn2);
+
+   Serial.println(Sn3);
+  Serial.println("\t");
+  Serial.println(Sn4);
+  Serial.println("\t");
+  Serial.println(Sn5);
+  Serial.println("\t");
+  
+
+  delay(1000);
+}
